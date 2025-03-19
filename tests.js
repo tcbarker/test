@@ -128,6 +128,8 @@ async function testpromisething(thing = document.body, name = "requestFullscreen
     }
 
     try {
+        const mer = await undefined;//this is fine. will continue..
+
         typer(thing,name);
         const result = thing[name]?.();
         typer(result,"then");
@@ -154,6 +156,7 @@ async function testpromisething(thing = document.body, name = "requestFullscreen
 
 
 const result = document.createElement("div");
+result.innerText = "STUFF: ";
 document.body.appendChild(result);
 
 async function thingy(){
@@ -162,16 +165,28 @@ async function thingy(){
 //thingy();
 
 
+const voo = new voice();
+
 
 const fullscreenbutton = document.createElement("button");
 fullscreenbutton.innerText = "test 1";
-fullscreenbutton.onclick = thingy;
+//fullscreenbutton.onclick = thingy;
 document.body.appendChild(fullscreenbutton);
 
+fullscreenbutton.onclick = async(e)=>{
+    if(document.body.requestFullscreen===undefined){
+        result.innerText+="this is an iphone, yeah?";
+    }
+    result.innerText+= "trying <it is :";
+    const thing = document.body.requestFullscreen();
+    result.innerText+=typeof(thing);
+    result.innerText+= ">got past it ";
+    voo.say({user:true, comment:"JEFF MAN!!!"});
+};
 
 
 
-const voo = new voice();
+
 
 
 
@@ -180,6 +195,6 @@ speakbutton.innerText = "test 2";
 document.body.appendChild(speakbutton);
 
 speakbutton.onclick = async (e) => {
-    voo.say({comment:"hmmmmm... there's somebody..."});
+    voo.say({comment:"They're gonna cleuse the greuve man!"});
 };
 

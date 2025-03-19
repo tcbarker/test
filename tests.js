@@ -167,6 +167,10 @@ async function thingy(){
 
 const voo = new voice();
 
+const beep = document.createElement("div");
+beep.innerText = "meer";
+document.body.appendChild(beep);
+
 
 const fullscreenbutton = document.createElement("button");
 fullscreenbutton.innerText = "test 1";
@@ -175,13 +179,16 @@ document.body.appendChild(fullscreenbutton);
 
 fullscreenbutton.onclick = async(e)=>{
     if(document.body.requestFullscreen===undefined){
-        result.innerText+="this is an iphone, yeah?";
+        //result.innerText+="this is an iphone, yeah?";
+        if(beep.requestFullscreen===undefined){
+            voo.say({comment:"This is gonna blow my bollocks off."});
+        } else {
+            voo.say({comment:"David had an idea brewing."});
+        }
+    } else {
+        const thing = document.body.requestFullscreen();
+        voo.say({comment:"Bloody hell, send it back."});
     }
-    result.innerText+= "trying <it is :";
-    const thing = document.body.requestFullscreen();
-    result.innerText+=typeof(thing);
-    result.innerText+= ">got past it ";
-    voo.say({user:true, comment:"JEFF MAN!!!"});
 };
 
 
@@ -195,6 +202,22 @@ speakbutton.innerText = "test 2";
 document.body.appendChild(speakbutton);
 
 speakbutton.onclick = async (e) => {
-    voo.say({comment:"They're gonna cleuse the greuve man!"});
+    voo.say({user:true, comment:"JEFF MAN!!! let us go and seed what that strange looking man is doing."});
 };
 
+
+const btn3 = document.createElement("button");
+btn3.innerText = "test 3 - do last";
+document.body.appendChild(btn3);
+
+
+btn3.onclick = async (e) => {
+    fullscreenbutton.style.display = "none";
+    speakbutton.style.display = "none";
+    btn3.style.display = "none";
+    await new Promise(r => setTimeout(r, 500));
+    voo.say({comment:"Oi mate, can you bloody well hear this or not? ehhhh davey!"});
+    fullscreenbutton.style.display = "block";
+    speakbutton.style.display = "block";
+    btn3.style.display = "block";
+};

@@ -159,7 +159,7 @@ document.body.appendChild(result);
 async function thingy(){
     result.innerText = await testpromisething(); 
 }
-thingy();
+//thingy();
 
 
 
